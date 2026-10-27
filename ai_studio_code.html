@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RC STORE - Krutoch Style Top Up</title>
+  <!-- Google Fonts: Kantumruy Pro & Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0b1120;
+      --bg-card: #151f32;
+      --bg-card-hover: #1e293b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent-red: #ef4444;
+      --accent-green: #10b981;
+      --accent-gold: #f59e0b;
+      --text-white: #f8fafc;
+      --text-gray: #94a3b8;
+      --border-color: #243247;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Kantumruy Pro', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      padding-bottom: 70px;
+    }
+
+    /* Top Announcement Banner */
+    .banner-announcement {
+      background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #111a2e;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .logo span {
+      color: var(--accent-gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .wallet-chip {
+      background: #0b1120;
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    .wallet-chip strong {
+      color: var(--accent-green);
+    }
+    .btn-add-wallet {
+      background: var(--accent-gold);
+      color: #000;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: 0.2s;
+    }
+    .btn-add-wallet:hover {
+      background: #d97706;
+    }
+
+    /* Search & Categories */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+    .search-box {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 14px 16px 14px 45px;
+      border-radius: 12px;
+      color: white;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-box input:focus {
+      border-color: #38bdf8;
+    }
+    .search-box i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-gray);
+    }
+
+    /* Category Tabs */
+    .category-tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-gray);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Krutoch Style Game Cards Grid */
+    .section-header {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .game-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: 0.2s;
+    }
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+    }
+    .badge-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--accent-red);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .badge-tag.hot {
+      background: #f97316;
+    }
+    .game-thumbnail {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .game-info {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .game-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1.3;
+      min-height: 34px;
+    }
+    .btn-topup {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      padding: 7px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.2s;
+    }
+    .btn-topup:hover {
+      background: #1e40af;
+    }
+
+    /* Modal Checkout / Topup Form */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--text-gray);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-white);
+    }
+    .form-control {
+      width: 100%;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: #38bdf8;
+    }
+
+    /* Package Grid */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .select-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .select-card.active {
+      border-color: #38bdf8;
+      background: #0f274a;
+    }
+    .select-card span {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .select-card strong {
+      color: var(--accent-gold);
+      font-size: 0.9rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      background: #b45309;
+      color: white;
+    }
+
+    /* Floating Telegram Support */
+    .floating-telegram {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0088cc;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,136,204,0.4);
+      z-index: 90;
+    }
+
+    /* Footer Trust */
+    footer {
+      text-align: center;
+      padding: 30px 16px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-gray);
+      font-size: 0.85rem;
+    }
+    .payment-trust-badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement -->
+  <div class="banner-announcement">
+    <i class="fa-solid fa-bullhorn"></i> ស្វាគមន៍មកកាន់ <strong>RC STORE</strong> | សេវាបុកពេជ្រស្វ័យប្រវត្តិកាត់លុយតាម KHQR 24/7!
+  </div>
+
+  <!-- Navbar -->
+  <header>
+    <a href="#" class="logo">
+      <i class="fa-solid fa-gamepad"></i> RC <span>STORE</span>
+    </a>
+    <div class="nav-actions">
+      <div class="wallet-chip">
+        <i class="fa-solid fa-wallet" style="color: var(--accent-green);"></i>
+        <strong id="walletAmount">$0.00</strong>
+      </div>
+      <button class="btn-add-wallet" onclick="openDepositModal()">
+        <i class="fa-solid fa-plus"></i> ដាក់លុយ
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Search Bar -->
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="ស្វែងរកហ្គេម (Free Fire, Roblox, MLBB...)" id="gameSearch" onkeyup="filterGames()" />
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      <button class="tab-btn active">🔥 ហ្គេមពេញនិយម (Trending)</button>
+      <button class="tab-btn">⚡ Free Fire ខ្មែរ</button>
+      <button class="tab-btn">💎 Mobile Legends</button>
+      <button class="tab-btn">🎁 Gift Card / Robux</button>
+    </div>
+
+    <!-- Games Grid (Krutoch Store Style) -->
+    <div class="section-header">
+      <i class="fa-solid fa-fire" style="color: #ef4444;"></i> Trending Games
+    </div>
+
+    <div class="game-grid" id="gamesContainer">
+      <!-- Game 1 -->
+      <div class="game-card" data-name="Free Fire ខ្មែរ">
+        <span class="badge-tag">TOP</span>
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&auto=format&fit=crop" class="game-thumbnail" alt="Free Fire" />
+        <div class="game-info">
+          <div class="game-title">Free Fire ខ្មែរ</div>
+          <button class="btn-topup" onclick="openOrderModal('Free Fire ខ្មែរ')">TOP UP</button>
+        </div>
+      </div>
+
+      <!-- Game 2 -->
+      <div class="game-card" data-name="Mobile Legends ខ្មែរ">
+        <span class="badge-tag hot">HOT</span>
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&auto=format&fit=crop" class="game-thumbnail" alt="MLBB" />
+        <div class="game-info">
+          <div class="game-title">Mobile ខ្មែរ (MLBB)</div>
+          <button class="btn-topup" onclick="openOrderModal('Mobile ខ្មែរ (MLBB)')">TOP UP</button>
+        </div>
+      </div>
+
+      <!-- Game 3 -->
+      <div class="game-card" data-name="Roblox Robux">
+        <span class="badge-tag">TOP</span>
+        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=300&auto=format&fit=crop" class="game-thumbnail" alt="Roblox" />
+        <div class="game-info">
+          <div class="game-title">Roblox (Robux)</div>
+          <button class="btn-topup" onclick="openOrderModal('Roblox (Robux)')">TOP UP</button>
+        </div>
+      </div>
+
+      <!-- Game 4 -->
+      <div class="game-card" data-name="Free Fire Level Up Pass">
+        <span class="badge-tag">PASS</span>
+        <img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=300&auto=format&fit=crop" class="game-thumbnail" alt="Level Up Pass" />
+        <div class="game-info">
+          <div class="game-title">FF Level Up Pass</div>
+          <button class="btn-topup" onclick="openOrderModal('FF Level Up Pass')">TOP UP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order / Topup Modal -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-content">
+      <i class="fa-solid fa-xmark modal-close" onclick="closeOrderModal()"></i>
+      <h3 style="margin-bottom: 16px; color: #38bdf8;" id="modalGameTitle">TOP UP</h3>
+
+      <div class="form-group">
+        <label>1. វាយបញ្ចូល Player ID / User ID</label>
+        <input type="text" id="targetId" class="form-control" placeholder="ឧទាហរណ៍៖ 184920491" />
+      </div>
+
+      <div class="form-group">
+        <label>2. ជ្រើសរើសកញ្ចប់ពេជ្រ</label>
+        <div class="item-grid">
+          <div class="select-card active" onclick="choosePkg(this, 1.00, '100 Diamonds')">
+            <span>100 Diamonds</span>
+            <strong>$1.00</strong>
+          </div>
+          <div class="select-card" onclick="choosePkg(this, 3.00, '310 Diamonds')">
+            <span>310 Diamonds</span>
+            <strong>$3.00</strong>
+          </div>
+          <div class="select-card" onclick="choosePkg(this, 5.00, '520 Diamonds')">
+            <span>520 Diamonds</span>
+            <strong>$5.00</strong>
+          </div>
+          <div class="select-card" onclick="choosePkg(this, 10.00, '1060 Diamonds')">
+            <span>1060 Diamonds</span>
+            <strong>$10.00</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>3. វិធីទូទាត់ប្រាក់</label>
+        <div class="item-grid">
+          <div class="select-card active" onclick="choosePay(this, 'wallet')">
+            <span><i class="fa-solid fa-wallet" style="color: #10b981;"></i> Wallet RC</span>
+            <small style="color: #94a3b8;">កាត់លុយវេបសាយ</small>
+          </div>
+          <div class="select-card" onclick="choosePay(this, 'khqr')">
+            <span><i class="fa-solid fa-qrcode" style="color: #ef4444;"></i> KHQR</span>
+            <small style="color: #94a3b8;">ស្កេនផ្ទាល់</small>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-submit" onclick="executeBuy()">បញ្ជាទិញឥឡូវនេះ</button>
+    </div>
+  </div>
+
+  <!-- Deposit Modal (បញ្ចូលលុយចូល Wallet) -->
+  <div class="modal-overlay" id="depositModal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+      <i class="fa-solid fa-xmark modal-close" onclick="closeDepositModal()"></i>
+      <h3 style="margin-bottom: 6px;"><i class="fa-solid fa-wallet" style="color: var(--accent-gold);"></i> បញ្ចូលលុយចូល Wallet</h3>
+      <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 16px;">ជ្រើសរើសចំនួនលុយដែលចង់ដាក់៖</p>
+
+      <div class="item-grid" style="margin-bottom: 16px;">
+        <div class="select-card active" onclick="chooseDep(this, 1.00)">
+          <span>$1.00</span>
+        </div>
+        <div class="select-card" onclick="chooseDep(this, 5.00)">
+          <span>$5.00</span>
+        </div>
+        <div class="select-card" onclick="chooseDep(this, 10.00)">
+          <span>$10.00</span>
+        </div>
+        <div class="select-card" onclick="chooseDep(this, 20.00)">
+          <span>$20.00</span>
+        </div>
+      </div>
+
+      <div id="qrSection" style="background: white; padding: 14px; border-radius: 10px; margin-bottom: 14px; display: none;">
+        <p style="color: black; font-weight: bold; margin-bottom: 6px;" id="qrPriceText">ស្កេន KHQR ដើម្បីបង់ $1.00</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=RC_STORE_KHQR" alt="KHQR" />
+        <p style="font-size: 0.75rem; color: #64748b; margin-top: 6px;">ទទួល ABA, ACLEDA, Wing, Canadia</p>
+      </div>
+
+      <button class="btn-submit" id="depActionBtn" onclick="runDeposit()">បង្ហាញ QR Code</button>
+    </div>
+  </div>
+
+  <!-- Telegram Floating Support -->
+  <a href="https://t.me/" target="_blank" class="floating-telegram">
+    <i class="fa-brands fa-telegram"></i> Live Support
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <p>Copyright © RC STORE. All Rights Reserved.</p>
+    <div class="payment-trust-badge">
+      <i class="fa-solid fa-qrcode"></i> We Accept: ABA KHQR / Bakong
+    </div>
+  </footer>
+
+  <script>
+    let currentBalance = 0.00;
+    let selectedPrice = 1.00;
+    let payMethod = 'wallet';
+    let depositVal = 1.00;
+    let qrShown = false;
+
+    function updateBalanceUI() {
+      document.getElementById('walletAmount').innerText = '$' + currentBalance.toFixed(2);
+    }
+
+    // Modal Triggers
+    function openOrderModal(gameTitle) {
+      document.getElementById('modalGameTitle').innerText = 'TOP UP: ' + gameTitle;
+      document.getElementById('orderModal').style.display = 'flex';
+    }
+    function closeOrderModal() {
+      document.getElementById('orderModal').style.display = 'none';
+    }
+
+    function openDepositModal() {
+      document.getElementById('depositModal').style.display = 'flex';
+      qrShown = false;
+      document.getElementById('qrSection').style.display = 'none';
+      document.getElementById('depActionBtn').innerText = 'បង្ហាញ QR Code';
+    }
+    function closeDepositModal() {
+      document.getElementById('depositModal').style.display = 'none';
+    }
+
+    // Selections
+    function choosePkg(el, price, name) {
+      document.querySelectorAll('#orderModal .item-grid:first-of-type .select-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      selectedPrice = price;
+    }
+
+    function choosePay(el, method) {
+      document.querySelectorAll('#orderModal .item-grid:last-of-type .select-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      payMethod = method;
+    }
+
+    function chooseDep(el, amount) {
+      document.querySelectorAll('#depositModal .item-grid .select-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      depositVal = amount;
+      document.getElementById('qrPriceText').innerText = `ស្កេន KHQR ដើម្បីបង់ $${amount.toFixed(2)}`;
+    }
+
+    // Confirm Deposit
+    function runDeposit() {
+      if (!qrShown) {
+        document.getElementById('qrSection').style.display = 'block';
+        document.getElementById('depActionBtn').innerText = 'ត្រាប់ការបង់ប្រាក់ជោគជ័យ (Paid)';
+        qrShown = true;
+      } else {
+        currentBalance += depositVal;
+        updateBalanceUI();
+        alert(`🎉 ជោគជ័យ! លុយចំនួន $${depositVal.toFixed(2)} ត្រូវបានបញ្ចូលទៅក្នុង Wallet នៃ RC STORE។`);
+        closeDepositModal();
+      }
+    }
+
+    // Purchase
+    function executeBuy() {
+      const id = document.getElementById('targetId').value.trim();
+      if (!id) {
+        alert('សូមបញ្ចូល ID គណនីហ្គេមជាមុនសិន!');
+        return;
+      }
+
+      if (payMethod === 'wallet') {
+        if (currentBalance < selectedPrice) {
+          alert(`⚠️ លុយក្នុង Wallet មិនគ្រប់គ្រាន់ទេ! អ្នកត្រូវការ $${selectedPrice.toFixed(2)} ប៉ុន្តែមានត្រឹម $${currentBalance.toFixed(2)}។ សូមចុចប៊ូតុង «ដាក់លុយ»។`);
+        } else {
+          currentBalance -= selectedPrice;
+          updateBalanceUI();
+          alert(`✅ ការទិញបានជោគជ័យ! ប្រព័ន្ធបានកាត់លុយ $${selectedPrice.toFixed(2)} ពី RC Wallet។ ទំនិញនឹងចូលទៅ ID: ${id} ភ្លាមៗ!`);
+          closeOrderModal();
+        }
+      } else {
+        alert(`សូមស្កេន KHQR ដើម្បីទូទាត់ផ្ទាល់ចំនួន $${selectedPrice.toFixed(2)}`);
+      }
+    }
+
+    // Search Filter
+    function filterGames() {
+      const query = document.getElementById('gameSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        card.style.display = name.includes(query) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
